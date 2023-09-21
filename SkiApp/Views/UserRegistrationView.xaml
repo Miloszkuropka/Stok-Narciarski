@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SkiApp.Views.UserRegistrationView">
+
+    <VerticalStackLayout Margin="20,0,20,0" VerticalOptions="Center">
+
+        <VerticalStackLayout Spacing="5" Margin="0,0,0,20">
+            <Label Text="Your Account Info" FontSize="35" TextColor="Gray" HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Spacing="20">
+
+            <VerticalStackLayout>
+                <Label TextColor="Grey" Text="Username" Margin="0" />
+                <Frame CornerRadius="10" BorderColor="Grey" BackgroundColor="White" Padding="15,0,0,0" Margin="0">
+                    <Entry Text="{Binding Username}" TextColor="Black" VerticalOptions="Center" Placeholder="Username" FontSize="15" Margin="0" />
+                </Frame>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Label TextColor="Grey" Text="Password" Margin="0" />
+                <Frame CornerRadius="10" BorderColor="Grey" BackgroundColor="White" Padding="15,0,0,0" Margin="0">
+                    <Entry Text="{Binding Password}" TextColor="Black" VerticalOptions="Center" Placeholder="Password" FontSize="15" Margin="0" IsPassword="True" />
+                </Frame>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Label TextColor="Grey" Text="Repeat Password" Margin="0" />
+                <Frame CornerRadius="10" BorderColor="Grey" BackgroundColor="White" Padding="15,0,0,0" Margin="0">
+                    <Entry Text="{Binding RepeatPassword}" TextColor="Black" VerticalOptions="Center" Placeholder="Repeat Password" FontSize="15" Margin="0" IsPassword="True" />
+                </Frame>
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+
+        <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="FillAndExpand" Margin="0,50,0,0">
+            <Button Text="Sign Up" Style="{StaticResource customButton}" Command="{Binding SignUpCommand}" />
+        </StackLayout>
+
+
+    </VerticalStackLayout>
+</ContentPage>

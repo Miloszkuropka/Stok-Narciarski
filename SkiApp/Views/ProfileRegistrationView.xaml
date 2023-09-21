@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:handlers="clr-namespace:SkiApp.Handlers" x:Class="SkiApp.Views.ProfileRegistrationView">
+
+    <StackLayout Margin="20,0,20,0" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+
+        <VerticalStackLayout Spacing="5" Margin="0,0,0,20">
+            <Label Text="Your Profile Info" FontSize="35" TextColor="Gray" HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Spacing="20">
+
+            <VerticalStackLayout>
+                <Label TextColor="Grey" Text="First Name" Margin="10,0,0,0" />
+                <Frame CornerRadius="10" BorderColor="Grey" BackgroundColor="White" Padding="15,0,0,0" Margin="0">
+                    <Entry Text="{Binding FirstName}" TextColor="Black" VerticalOptions="Center" Placeholder="First Name" FontSize="15" Margin="0" />
+                </Frame>
+            </VerticalStackLayout>
+
+
+            <VerticalStackLayout>
+                <Label TextColor="Grey" Text="Surname" Margin="10,0,0,0" />
+                <Frame CornerRadius="10" BorderColor="Grey" BackgroundColor="White" Padding="15,0,0,0" Margin="0">
+                    <Entry Text="{Binding Surname}" TextColor="Black" VerticalOptions="Center" Placeholder="Surname" FontSize="15" />
+                </Frame>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Label TextColor="Grey" Text="Email" Margin="10,0,0,0" />
+                <Frame CornerRadius="10" BorderColor="Grey" BackgroundColor="White" Padding="15,0,0,0" Margin="0">
+                    <Entry Text="{Binding Email}" TextColor="Black" VerticalOptions="Center" Placeholder="Email" Keyboard="Email" FontSize="15" />
+                </Frame>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Label TextColor="Grey" Text="Phone Number" Margin="10,0,0,0" />
+                <Frame CornerRadius="10" BorderColor="Grey" BackgroundColor="White" Padding="15,0,0,0" Margin="0">
+                    <Entry Text="{Binding PhoneNumber}" TextColor="Black" VerticalOptions="Center" Placeholder="Phone Number" Keyboard="Telephone" FontSize="15" />
+                </Frame>
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+
+        <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="FillAndExpand" Margin="0,50,0,0">
+            <Button Text="Next" Style="{StaticResource customButton}" Command="{Binding NextCommand}" />
+        </StackLayout>
+
+    </StackLayout>
+</ContentPage>

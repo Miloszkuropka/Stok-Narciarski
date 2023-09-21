@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SkiApp.Pages.ProfileInfo">
+    <VerticalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center" Margin="10">
+            <Image Source="giga.jpg" MaximumWidthRequest="75" Margin="10" />
+            <Label Text="John Batman" VerticalTextAlignment="Center" Margin="20" FontSize="25" />
+        </HorizontalStackLayout>
+
+        <Grid x:Name="ProfileGrid" MaximumWidthRequest="500" MaximumHeightRequest="200" Margin="50">
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Name:" VerticalOptions="Center" FontSize="18" Grid.Row="0" Grid.Column="0" />
+            <Entry Text="John" VerticalOptions="Center" FontSize="18" Grid.Row="0" Grid.Column="1" />
+
+            <Label Text="Surname:" VerticalOptions="Center" FontSize="18" Grid.Row="1" Grid.Column="0" />
+            <Entry Text="Batman" VerticalOptions="Center" FontSize="18" Grid.Row="1" Grid.Column="1" />
+
+            <Label Text="E-Mail:" VerticalOptions="Center" FontSize="18" Grid.Row="2" Grid.Column="0" />
+            <Entry Text="john@polsl.pl" VerticalOptions="Center" FontSize="18" Grid.Row="2" Grid.Column="1" />
+
+            <Label Text="Phone Number:" VerticalOptions="Center" FontSize="18" Grid.Row="3" Grid.Column="0" />
+            <Entry Text="123456789" VerticalOptions="Center" FontSize="18" Grid.Row="3" Grid.Column="1" />
+        </Grid>
+        <HorizontalStackLayout HorizontalOptions="End" Margin="0,0,50,0">
+            <Button Text="Cancel" Margin="10" />
+            <Button Text="Save" Margin="10" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

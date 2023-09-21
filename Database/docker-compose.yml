@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:14.7
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports: 
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: ski-lift-commander
+  db-ui:
+    image: dpage/pgadmin4:7.0
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@polsl.pl
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_LISTEN_PORT: 1111
+    ports: 
+      - 1111:1111
+    volumes:
+      - pg-data:/var/lib/pgadmin
+
+volumes:
+  db-data:
+  pg-data:

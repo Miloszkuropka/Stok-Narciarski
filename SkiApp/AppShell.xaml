@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell x:Class="SkiApp.AppShell" xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:SkiApp" xmlns:pages="clr-namespace:SkiApp.Pages" xmlns:views="clr-namespace:SkiApp.Views">
+
+    <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate views:LoginView}" Route="login" />
+    </TabBar>
+
+    <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate views:ProfileRegistrationView}" Route="profile_registration" />
+    </TabBar>
+
+    <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate views:UserRegistrationView}" Route="user_registration" />
+    </TabBar>
+
+    <TabBar>
+        <Tab Title="Profile Info" Icon="user.png" Route="profileinfo">
+            <ShellContent ContentTemplate="{DataTemplate pages:ProfileInfo}" />
+        </Tab>
+        <Tab Title="Entries" Icon="ski_lift.png" Route="entries">
+            <ShellContent ContentTemplate="{DataTemplate pages:PurchaseHistory}" />
+        </Tab>
+        <Tab Title="Payments" Icon="shopping_cart.png" Route="payments">
+            <ShellContent ContentTemplate="{DataTemplate pages:PaymentHistory}" />
+        </Tab>
+        <Tab Title="Tickets" Icon="qr_code.png" Route="tickets">
+            <ShellContent ContentTemplate="{DataTemplate pages:Tickets}" />
+        </Tab>
+    </TabBar>
+
+</Shell>

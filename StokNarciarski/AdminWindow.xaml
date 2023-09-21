@@ -1,0 +1,139 @@
+﻿<Window x:Class="Stok_Narciarski.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Stok_Narciarski"
+        mc:Ignorable="d"
+        Title="AdminWindow" Height="450" Width="800"
+        PreviewKeyDown="Window_PreviewKeyDown"
+        WindowStyle="None"
+        ResizeMode="NoResize">
+    <Grid>
+        <Grid Background="#0F0F2D" Grid.ColumnSpan="2">
+
+        </Grid>
+        <TabControl Background="LightBlue">
+            <TabItem x:Name="Conditions" Header="Warunki na stoku">
+                <Grid>
+                    <TextBox Style="{StaticResource roundcornertext}" Name="temperature" HorizontalAlignment="Left" Margin="230,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="st. Celsjusza"/>
+                    <TextBox Style="{StaticResource roundcornertext}" Name="snow" HorizontalAlignment="Left" Margin="512,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Label Style="{StaticResource blackLabel}" Content="Temperatura" HorizontalAlignment="Left" Margin="230,138,0,0" VerticalAlignment="Top"/>
+                    <Label Style="{StaticResource blackLabel}" Content="Centymetrów śniegu" HorizontalAlignment="Left" Margin="475,138,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.292,0.386"/>
+                    <Button Style="{StaticResource roundButton}" BorderBrush="#fff" Content="Aktualizuj" HorizontalAlignment="Left" Margin="618,341,0,0" VerticalAlignment="Top" Width="122" Click="UpdateWeatherConditions" Height="36"/>
+                </Grid>
+
+            </TabItem>
+            <TabItem Name="price_list" Header="Cennik" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="152*"/>
+                        <ColumnDefinition Width="245*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="PriceList" AutoGenerateColumns="False" 
+                  ItemsSource="{Binding}" Margin="41,55,414,78" SelectionChanged="PriceList_SelectionChanged" Grid.ColumnSpan="2">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Typ karnetu" Binding="{Binding ticketType}" />
+                            <DataGridTextColumn Header="Cena normalna" Binding="{Binding fullPrice}" />
+                            <DataGridTextColumn Header="Cena ulgowa" Binding="{Binding reducedPrice}" />
+                            <DataGridTextColumn Header="Dni" Binding="{Binding days}" />
+                            <DataGridTextColumn Header="Godzin" Binding="{Binding hours}" />
+                            <DataGridTextColumn Header="Punktów" Binding="{Binding points}" />
+                            <DataGridTextColumn Header="ID" Binding="{Binding id}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Button Style="{StaticResource redButton}" BorderBrush="#fff" Name="Remove_offer" Content="Usuń" Margin="0,0,26,27" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="134" Click="Remove_offer_Click"/>
+                    <Label Content="CENNIK" HorizontalAlignment="Left" Margin="153,5,0,0" VerticalAlignment="Top" Width="125" FontSize="20"/>
+                    <RadioButton Style="{StaticResource greenRadioButton}" Name="periodic_radioButton" GroupName="carnet_type" Content="Okresowy" HorizontalAlignment="Left" Margin="207,146,0,0" VerticalAlignment="Top" Checked="Periodic_Type_Checked" Grid.Column="1"/>
+                    <RadioButton Style="{StaticResource blueRadioButton}" Name="points_radioButton" GroupName="carnet_type" Content="Na punkty" HorizontalAlignment="Left" Margin="321,146,0,0" VerticalAlignment="Top" Checked="Points_Type_Checked" Grid.Column="1"/>
+                    <Label Content="DODAJ OFERTĘ" HorizontalAlignment="Left" Margin="224,17,0,0" VerticalAlignment="Top" Width="168" FontSize="20" Grid.Column="1"/>
+                    <TextBox Style="{StaticResource roundcornertext}" x:Name="normal_price"  HorizontalAlignment="Left" Margin="298,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="np. 29,99" TextChanged="normal_price_TextChanged" Grid.Column="1"/>
+                    <TextBox Style="{StaticResource roundcornertext}" x:Name="reduced_price"  HorizontalAlignment="Left" Margin="298,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="np. 29,99" TextChanged="reduced_price_TextChanged" Grid.Column="1"/>
+                    <TextBox Style="{StaticResource roundcornertext}" x:Name="days"  HorizontalAlignment="Left" Margin="298,239,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="liczba bez przecinka" TextChanged="days_TextChanged" Grid.Column="1"/>
+                    <TextBox Style="{StaticResource roundcornertext}" x:Name="hours"  HorizontalAlignment="Left" Margin="298,271,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="liczba bez przecinka" TextChanged="hours_TextChanged" Grid.Column="1"/>
+                    <Label Content="Cena normalna:" HorizontalAlignment="Left" Margin="194,170,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <Label Content="Cena ulgowa:" HorizontalAlignment="Center" Margin="0,203,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <Label Content="Dni:" HorizontalAlignment="Left" Margin="253,234,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <Label Content="Godzin:" HorizontalAlignment="Left" Margin="233,266,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <Label Content="Punktów:" HorizontalAlignment="Left" Margin="224,296,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBox Style="{StaticResource roundcornertext}" x:Name="points"  HorizontalAlignment="Left" Margin="298,303,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="st. Celsjusza" TextChanged="points_TextChanged" Grid.Column="1"/>
+                    <Button Style="{StaticResource greenButton}" BorderBrush="#fff" Name="Add_offer" Content="Dodaj" Margin="0,0,128,27" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="134" Click="Add_offer_Click" Grid.Column="1"/>
+                    <DatePicker Name="StartDatePicker" HorizontalAlignment="Right" Margin="0,0,87,315" VerticalAlignment="Bottom" SelectedDateChanged="StartDatePickerChanged" Grid.Column="1"/>
+                    <DatePicker Name="EndDatePicker" HorizontalAlignment="Right" Margin="0,0,87,282" Height="24" VerticalAlignment="Bottom" SelectedDateChanged="EndDatePickerChanged" Grid.Column="1"/>
+                    <Label Content="Data od:" HorizontalAlignment="Right" Margin="0,0,202,315" VerticalAlignment="Bottom" Grid.Column="1"/>
+                    <Label Content="Data do:" HorizontalAlignment="Right" Margin="0,0,202,284" VerticalAlignment="Bottom" Grid.Column="1"/>
+                </Grid>
+
+
+            </TabItem>
+            <TabItem Name="permitions" Header="Nadaj uprawnienia" Height="22" Margin="-2,0,-2,0" VerticalAlignment="Bottom" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="Customer_List" AutoGenerateColumns="False" 
+                  ItemsSource="{Binding}" Margin="16,56,408,130" SelectionChanged="Customer_List_SelectionChanged" Grid.Column="1">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding id}" />
+                            <DataGridTextColumn Header="Imię" Binding="{Binding name}"/>
+                            <DataGridTextColumn Header="Nazwisko" Binding="{Binding surname}"/>
+                            <DataGridTextColumn Header="e-mail" Binding="{Binding email}"/>
+                            <DataGridTextColumn Header="Telefon" Binding="{Binding phoneNumber}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Button Style="{StaticResource redButton}" BorderBrush="#fff" Content="Odbierz uprawnienia administratora" Margin="468,0,72,18" Click="RemoveAdmin" Grid.Column="1" Height="30" VerticalAlignment="Bottom"/>
+                    <Button Style="{StaticResource greenButton}" BorderBrush="#fff" Content="Nadaj uprawnienia administratora" Margin="468,0,72,81" Click="MakeAdmin" Grid.Column="1" Height="30" VerticalAlignment="Bottom"/>
+                    <DataGrid x:Name="EmployeesList" AutoGenerateColumns="False" 
+                        ItemsSource="{Binding}" Margin="404,56,15,130" Grid.Column="1">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Rola" Binding="{Binding role}"/>
+                            <DataGridTextColumn Header="ID" Binding="{Binding id}" />
+                            <DataGridTextColumn Header="Imię" Binding="{Binding name}"/>
+                            <DataGridTextColumn Header="Nazwisko" Binding="{Binding surname}"/>
+                            <DataGridTextColumn Header="e-mail" Binding="{Binding email}"/>
+                            <DataGridTextColumn Header="Telefon" Binding="{Binding phoneNumber}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Style="{StaticResource redButton}" BorderBrush="#fff" Content="Odbierz uprawnienia sprzedawcy" Margin="67,0,473,18" Click="RemoveAssistant" Grid.Column="1" Height="30" VerticalAlignment="Bottom"/>
+                    <Button Style="{StaticResource greenButton}" BorderBrush="#fff" Content="Nadaj uprawnienia sprzedawcy" Margin="67,0,473,81" Click="MakeAssistant" Grid.Column="1" Height="30" VerticalAlignment="Bottom"/>
+                    <Label Content="Klienci" HorizontalAlignment="Left" Margin="164,10,0,0" VerticalAlignment="Top" Width="74" FontSize="20" Grid.ColumnSpan="2"/>
+                    <Label Content="Pracownicy" HorizontalAlignment="Left" Margin="540,10,0,0" VerticalAlignment="Top" Width="110" FontSize="20" Grid.ColumnSpan="2"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Ustawienia" >
+                <Grid>
+                    <Button Style="{StaticResource logoutButton}" BorderBrush="#fff" Content="Wyloguj" HorizontalAlignment="Left" Margin="587,339,0,0" VerticalAlignment="Top" Height="35" Width="175" Click="Return" />
+                    <TextBox Style="{StaticResource roundcornertext}" HorizontalAlignment="Left" x:Name="username" Margin="614,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" TextChanged="username_TextChanged"/>
+                    <TextBox Style="{StaticResource roundcornertext}" HorizontalAlignment="Left" x:Name="name" Margin="614,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" TextChanged="imie_TextChanged"/>
+                    <TextBox Style="{StaticResource roundcornertext}" HorizontalAlignment="Left" x:Name="surname" Margin="614,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" TextChanged="nazwisko_TextChanged"/>
+                    <TextBox Style="{StaticResource roundcornertext}" HorizontalAlignment="Left" x:Name="email" Margin="614,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" TextChanged="email_TextChanged"/>
+                    <TextBox Style="{StaticResource roundcornertext}" HorizontalAlignment="Left" x:Name="phone_number" Margin="614,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" TextChanged="nr_tel_TextChanged"/>
+                    <Button Style="{StaticResource roundButton}" BorderBrush="#fff" Content="Aktualizuj" HorizontalAlignment="Left" Margin="627,203,0,0" VerticalAlignment="Top" Height="37" Width="94" Click="Update"/>
+                    <Label Content="Username" HorizontalAlignment="Left" Margin="548,30,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Imię" HorizontalAlignment="Left" Margin="548,60,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Nazwisko" HorizontalAlignment="Left" Margin="548,90,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Email" HorizontalAlignment="Left" Margin="548,120,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Nr tel" HorizontalAlignment="Left" Margin="548,150,0,0" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="65,61,0,0" TextWrapping="Wrap" Text="Nowe hasło" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="39,88,0,0" TextWrapping="Wrap" Text="Potwierdź nowe hasło" VerticalAlignment="Top"/>
+                    <Button Style="{StaticResource roundButton}" BorderBrush="#fff" Content="Zmień hasło" HorizontalAlignment="Left" Margin="251,143,0,0" VerticalAlignment="Top" Height="46" Width="112" Click="Change_Password_Admin"/>
+                    <PasswordBox Style="{StaticResource roundcornerpassword}" HorizontalAlignment="Left" x:Name="OldPassword" Margin="179,30,0,0" VerticalAlignment="Top" Width="256" Height="22"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="68,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="pl-pl" Text="Stare hasło"/></TextBlock>
+                    <PasswordBox Style="{StaticResource roundcornerpassword}" HorizontalAlignment="Left" x:Name="NewPassword" Margin="179,58,0,0" VerticalAlignment="Top" Width="256" Height="22"/>
+                    <PasswordBox Style="{StaticResource roundcornerpassword}" HorizontalAlignment="Left" x:Name="NewPasswordConfirm"  Margin="179,88,0,0" VerticalAlignment="Top" Width="256" Height="22"/>
+                    <Button Style="{StaticResource logoutButton}" BorderBrush="#fff" Content="Pobierz raport" HorizontalAlignment="Left" Margin="39,339,0,0" VerticalAlignment="Top" Height="35" Width="175" Click="DowloadReport" />
+                    <DatePicker Name="StartPicker" HorizontalAlignment="Right" Margin="0,0,580,156" VerticalAlignment="Bottom" SelectedDateChanged="StartPickerChanged" Width="172"/>
+                    <DatePicker Name="EndPicker" HorizontalAlignment="Right" Margin="0,0,580,99" VerticalAlignment="Bottom" SelectedDateChanged="EndPickerChanged" Width="172"/>
+                    <Label Content="Data od:" HorizontalAlignment="Right" Margin="0,0,697,186" VerticalAlignment="Bottom"/>
+                    <Label Content="Data do:" HorizontalAlignment="Right" Margin="0,0,697,128" VerticalAlignment="Bottom"/>
+                </Grid>
+
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>
